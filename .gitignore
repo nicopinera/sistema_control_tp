@@ -1,0 +1,32 @@
+# Archivos temporales de Word
+~$*.doc*
+~$*.docx
+~$*.tmp
+
+# Archivos temporales de Windows
+Thumbs.db
+Desktop.ini
+
+# Archivos de respaldo
+*.bak
+*.old
+
+# Archivos de sistema
+.DS_Store
+
+# Carpetas de entorno virtual de Python
+venv/
+.env/
+
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+
+# Salidas de Jupyter Notebook
+.ipynb_checkpoints/
+
+# Carpetas de VSCode
+.vscode/
+
+# Otros archivos temporales
+*.log
