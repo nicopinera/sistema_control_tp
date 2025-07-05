@@ -1,2 +1,2 @@
-# sistema_control_tp
+# Sistema de Control
 Trabajo Practico Integrador de Sistema de Control
