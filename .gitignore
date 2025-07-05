@@ -3,6 +3,8 @@
 ~$*.docx
 ~$*.tmp
 
+.temp/
+
 # Archivos temporales de Windows
 Thumbs.db
 Desktop.ini
