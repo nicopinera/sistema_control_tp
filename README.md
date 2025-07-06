@@ -54,7 +54,34 @@ El efecto Joule permite un calentamiento rápido y eficiente del horno, ya que l
 - Ventilador (en hornos de convección): Circula el aire caliente para una cocción más uniforme. 
 - Panel de control: Permite al usuario seleccionar la temperatura, el tipo de cocción y otras funciones. 
 
-El desafio de este trabajo sera diseñar un sistema de control que permita mantener la temperatura del horno en un valor deseado, compensando perturbaciones y variaciones en la carga termica. Nuestra señal de salida sera la temperatura del horno, la mediremos con el sensor **LM35** el cual es un sensor de temperatura lineal con salida equivalente a $10 [\frac{mV}{ºC}]$ (falta explicar el acondicionador de señal). La acción de control se ejecuta mediante un **relé** que gobierna el encendido y apagado de la resistencia calefactora del horno. El sistema de control evalúa la diferencia entre la temperatura medida y la temperatura de referencia, y determina si la resistencia debe activarse.
+### Que se busca controlar
+
+El desafio de este trabajo sera diseñar un sistema de control que permita mantener la temperatura del horno en un valor deseado, compensando perturbaciones y variaciones en la carga termica. Nuestra señal de salida sera la temperatura del horno, la mediremos con el sensor **LM35** el cual es un sensor de temperatura lineal con salida equivalente a $10 [\frac{mV}{ºC}]$ (falta explicar el acondicionador de señal). 
+
+### Accion de control
+
+La acción de control se ejecuta mediante un **relé** que gobierna el encendido y apagado de la resistencia calefactora del horno. El sistema de control evalúa la diferencia entre la temperatura medida y la temperatura de referencia, y determina si la resistencia debe activarse.
+
+### Variables
+#### Variables de entrada
+|Variable|Simbolo|Unidad|Descripcion|
+|---|---|---|---|
+|Potencia aplicada a la resistencia|$P_r$|$[W]$|Energia entregada al horno para generar calor|
+|Tension de alimentacion|$V_{cc}$|$[V]$|Tension que activa la resistencia|
+|Señal de referencia de temperatura|$T_{ref}$|$[ºC]$|Temperatura deseada en el horno|
+
+#### Variables de salida
+|Variable|Simbolo|Unidad|Descripcion|
+|---|---|---|---|
+|Temperatura interna del horno|$T(t)$|$[ºC]$|Variable controlada; salida del sistema|
+|Señal del sensor (salida del LM35)|$V_{sensor}$|$[V]$|Señal analógica proporcional a la temperatura (10 mV/°C).|
+
+#### Parametros del sistema
+|Parametro|Simbolo|Unidad|Descripcion|
+| ---| --- | --- | --- |
+|Capacidad térmica del horno|$C$|$\frac{J}{°C}$|Energía necesaria para elevar 1 °C la temperatura del aire.|
+|Resistencia térmica| $R_t$| $\frac{ºC}{W}$ | Oposición al flujo de calor hacia el ambiente.|
+| Constante de tiempo| $\tau$ | $s$| $\tau = R_t . C$, indica cuán rápido responde el horno. |
 
 ---
 
