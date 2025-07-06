@@ -41,8 +41,7 @@ En los hornos eléctricos, este efecto es la base de su funcionamiento, ya que l
 
 Cuando se enciende el horno, la corriente eléctrica fluye a través de estas resistencias. Los electrones que componen la corriente eléctrica chocan con los átomos del material de la resistencia, generando fricción. Esta fricción transforma la energía cinética de los electrones en energía térmica, elevando la temperatura de la resistencia y, por lo tanto, del interior del horno. El calor generado en las resistencias se distribuye por todo el interior del horno, calentando los alimentos que se encuentran dentro. 
 
-El efecto Joule permite un calentamiento rápido y eficiente del horno, ya que la energía eléctrica se transforma directamente en calor. La potencia de calentamiento se puede controlar ajustando la corriente eléctrica que pasa por las resistencias, lo que permite regular la temperatura del horno
-
+El efecto Joule permite un calentamiento rápido y eficiente del horno, ya que la energía eléctrica se transforma directamente en calor. La potencia de calentamiento se puede controlar ajustando la corriente eléctrica que pasa por las resistencias, lo que permite regular la temperatura del horno.
 
 **Principio de funcionamiento:**
 1.	Generación de calor: El horno eléctrico utiliza resistencias (generalmente de alambre metálico) que, al ser atravesadas por la corriente eléctrica, se calientan debido al efecto Joule. 
@@ -55,7 +54,7 @@ El efecto Joule permite un calentamiento rápido y eficiente del horno, ya que l
 - Ventilador (en hornos de convección): Circula el aire caliente para una cocción más uniforme. 
 - Panel de control: Permite al usuario seleccionar la temperatura, el tipo de cocción y otras funciones. 
 
-El desafio de este trabajo sera diseñar un sistema de control que permita mantener la temperatura del horno en un valor deseado, compensando perturbaciones y variaciones en la carga termica. Nuestra señal de salida sera la temperatura del horno, la mediremos con el sensor **LM35** el cual es un sensor de temperatura lineal con salida equivalente a $10 [\frac{mV}{ºC}]$ (falta explicar el acondicionador de señal).
+El desafio de este trabajo sera diseñar un sistema de control que permita mantener la temperatura del horno en un valor deseado, compensando perturbaciones y variaciones en la carga termica. Nuestra señal de salida sera la temperatura del horno, la mediremos con el sensor **LM35** el cual es un sensor de temperatura lineal con salida equivalente a $10 [\frac{mV}{ºC}]$ (falta explicar el acondicionador de señal). La acción de control se ejecuta mediante un **relé** que gobierna el encendido y apagado de la resistencia calefactora del horno. El sistema de control evalúa la diferencia entre la temperatura medida y la temperatura de referencia, y determina si la resistencia debe activarse.
 
 ---
 
