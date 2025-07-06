@@ -27,3 +27,36 @@ Para este trabajo utilizaremos de referencia el siguiente modelo comercial para 
 •	Tensión de entrada admitida: $198-242 [V]$
 •	Capacidad del Horno: $67 [Litros]$
 •	Temperatura mínima: $50 [ºC]$ – Temperatura máxima: $250 [ºC]$
+
+## 2. Definicion del Problema 
+Hablar de hornos es adentrarse en un mundo de cocción, donde la tecnología se ha hecho presente a través de diversos modelos que evolucionan con el paso del tiempo. Tener un horno eléctrico en casa es una alternativa a un horno de gas, quizá con una capacidad menor pero que funciona muy bien para cocinar los alimentos de una familia promedio.
+
+Estos hornos emplean resistencias para convertir la energía eléctrica en calor. De esta manera, permiten que se lleve a cabo un proceso denominado efecto Joule. Consiste en producir calor mediante el choque de los electrones que generan la corriente eléctrica y los átomos. 
+
+Cuando esto se produce, la temperatura se eleva. Mientras el horno esté conectado a la corriente, este proceso se seguirá produciendo. Los choques de los electrones y los átomos son constantes debido al movimiento desordenado de los primeros dentro del horno. La potencia de este tipo de hornos depende de la cantidad de [kV] que sean capaces de absorber de la corriente eléctrica. En función de esto, el calor que emitan será mayor o menor.
+
+Un horno eléctrico funciona generando calor a través de resistencias eléctricas que se calientan cuando se conectan a la corriente eléctrica. Este calor se distribuye dentro del horno, ya sea por convección natural o mediante un ventilador en los hornos de convección, para cocinar los alimentos. El efecto Joule, también conocido como calentamiento Joule, es el fenómeno físico que explica cómo la energía eléctrica se transforma en calor cuando una corriente eléctrica circula por un material resistivo.
+
+En los hornos eléctricos, este efecto es la base de su funcionamiento, ya que las resistencias dentro del horno, al recibir la corriente eléctrica, se calientan debido a la resistencia que ofrecen al paso de los electrones, generando calor que se utiliza para cocinar los alimentos.
+
+Cuando se enciende el horno, la corriente eléctrica fluye a través de estas resistencias. Los electrones que componen la corriente eléctrica chocan con los átomos del material de la resistencia, generando fricción. Esta fricción transforma la energía cinética de los electrones en energía térmica, elevando la temperatura de la resistencia y, por lo tanto, del interior del horno. El calor generado en las resistencias se distribuye por todo el interior del horno, calentando los alimentos que se encuentran dentro. 
+
+El efecto Joule permite un calentamiento rápido y eficiente del horno, ya que la energía eléctrica se transforma directamente en calor. La potencia de calentamiento se puede controlar ajustando la corriente eléctrica que pasa por las resistencias, lo que permite regular la temperatura del horno
+
+
+**Principio de funcionamiento:**
+1.	Generación de calor: El horno eléctrico utiliza resistencias (generalmente de alambre metálico) que, al ser atravesadas por la corriente eléctrica, se calientan debido al efecto Joule. 
+2.	Distribución del calor: Convección natural: El aire caliente generado por las resistencias asciende, creando corrientes de aire caliente que distribuyen el calor por todo el horno. Convección forzada (en hornos de convección): Un ventilador impulsa el aire caliente generado por las resistencias, asegurando una distribución más uniforme y rápida del calor. 
+3.	Control de temperatura: Un termostato regula la temperatura del horno, apagando las resistencias cuando se alcanza la temperatura deseada y volviéndolas a encender si la temperatura baja.
+
+**Partes principales de un horno eléctrico:**
+- Resistencias: Son los elementos calefactores que generan el calor, compuestas de materiales con una alta resistencia al paso de la corriente eléctrica.
+- Termostato: Controla la temperatura del horno, regulando el encendido y apagado de las resistencias. 
+- Ventilador (en hornos de convección): Circula el aire caliente para una cocción más uniforme. 
+- Panel de control: Permite al usuario seleccionar la temperatura, el tipo de cocción y otras funciones. 
+
+El desafio de este trabajo sera diseñar un sistema de control que permita mantener la temperatura del horno en un valor deseado, compensando perturbaciones y variaciones en la carga termica. Nuestra señal de salida sera la temperatura del horno, la mediremos con el sensor **LM35** el cual es un sensor de temperatura lineal con salida equivalente a $10 [\frac{mV}{ºC}]$ (falta explicar el acondicionador de señal).
+
+---
+
+> Para controlar de forma adecuada la temperatura interna de un horno eléctrico, se realiza un control PID (proporcional, integral y derivado). Gracias a este mecanismo, es posible mantener el valor de la temperatura a un nivel constante, algo fundamental a la hora de cocinar determinados alimentos.
