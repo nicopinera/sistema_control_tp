@@ -83,6 +83,22 @@ La acción de control se ejecuta mediante un **relé** que gobierna el encendido
 |Resistencia térmica| $R_t$| $\frac{ºC}{W}$ | Oposición al flujo de calor hacia el ambiente.|
 | Constante de tiempo| $\tau$ | $s$| $\tau = R_t . C$, indica cuán rápido responde el horno. |
 
+El horno esta equipado con una resisntecia calefactora de $2400 [W]$ a $220[V]$ lo que implica una resistencia electrica de
+
+$$R_{electrica} = \frac{V^2}{P} = \frac{220^2}{2400} = 20.53 [\Omega] $$
+
+### Perturbaciones posibles
+- Cambios en la temperatura ambiente que modifican las perdidad termicas
+- Apertura de la puerta del horno que provoca caidas de temperatura
+- Insercion de objetos frios que modifican el equilibrio termico
+- Variaciones en la tension de red, que afectan la potencia real de la resistencia 
+
+## 3. Analisis de la planta
+
 ---
 
 > Para controlar de forma adecuada la temperatura interna de un horno eléctrico, se realiza un control PID (proporcional, integral y derivado). Gracias a este mecanismo, es posible mantener el valor de la temperatura a un nivel constante, algo fundamental a la hora de cocinar determinados alimentos.
+
+---
+
+## 6. Conclusiones
