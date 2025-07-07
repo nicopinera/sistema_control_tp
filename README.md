@@ -116,13 +116,14 @@ Donde:
 - $T_a$: temperatura ambiente
 - $P$: potencia constante aplicada
 
-En nuestro sistema la temperatura ambiente sera de $25[ºC]$ y la temperatura del horno en regimen estacionario sera de $300[ºC]$, ademas la potencia aplicada sera de $2400[W]$ entonces el valor de la resistencia termica seria
+En nuestro sistema la temperatura ambiente sera de $25[ºC]$ y la temperatura del horno en regimen estacionario sera de $300[ºC]$, ademas la potencia aplicada sera de $1000[W]$ entonces el valor de la resistencia termica seria
 
-$$R_t = \frac{T_{\infin}-T_a}{P} = \frac{300-25}{2400} = 114.58[m \Omega]$$
+$$R_t = \frac{T_{\infin}-T_a}{P} = \frac{300-25}{2400} = 275e-3[\Omega]$$
 
 La **capacidad termica total** se la puede calcular de la siguiente manera
 
 $$C = m.c$$
+
 Siendo 
 - $m$: la masa del material contenido
 - $c$: calor especifico, en el caso del aire $c = 1005J/kg$
@@ -130,6 +131,7 @@ Siendo
 En funcion de los valores y dimensiones de nuestro horno tenemos que
 - $V = 67 [litros] = 0.067[m^3]$ (Volumen)
 - $\rho = 1.2 \frac{kg}{m^3}$ (Densidad del aire)
+
 $$m = \rho . V = 1.2 * 0.067 = 0.0804 [Kg]$$
 
 $$C = m . c = 0.0804 * 1005 = 82.48 \frac{J}{ºC}$$
