@@ -24,10 +24,10 @@ Para nuestro sistema las temperaturas máximas posibles de establecer varían se
 Para este trabajo utilizaremos de referencia el siguiente modelo comercial para estudiar su comportamiento y características: **_Horno Whirlpool Empotrable Eléctrico 60 CM Inox (AKZM656IX)_** el cual posee las siguientes características:
 
 - Dimensión: Ancho $595 [mm]$ x Profundidad $564 [mm]$ x Altura $595 [mm]$
-- Potencia total: $2.4 [kW]$
+- Potencia total: $2.4 [kW]$ - Se supondra una potencia de trabajo de $1[kW]$
 - Tensión de entrada admitida: $198-242 [V]$
 - Capacidad del Horno: $67 [Litros]$
-- Temperatura mínima: $50 [ºC]$ – Temperatura máxima: $250 [ºC]$
+- Temperatura mínima: $50 [ºC]$ – Temperatura máxima: $300 [ºC]$
 
 ## 2. Definicion del Problema 
 Hablar de hornos es adentrarse en un mundo de cocción, donde la tecnología se ha hecho presente a través de diversos modelos que evolucionan con el paso del tiempo. Tener un horno eléctrico en casa es una alternativa a un horno de gas, quizá con una capacidad menor pero que funciona muy bien para cocinar los alimentos de una familia promedio.
@@ -84,10 +84,6 @@ La acción de control se ejecuta mediante un **relé** que gobierna el encendido
 |Resistencia térmica| $R_t$| $\frac{ºC}{W}$ | Oposición al flujo de calor hacia el ambiente.|
 | Constante de tiempo| $\tau$ | $s$| $\tau = R_t . C$, indica cuán rápido responde el horno. |
 
-El horno esta equipado con una resisntecia calefactora de $2400 [W]$ a $220[V]$ lo que implica una resistencia electrica de
-
-$$R_{electrica} = \frac{V^2}{P} = \frac{220^2}{2400} = 20.53 [\Omega] $$
-
 ### Perturbaciones posibles
 - Cambios en la temperatura ambiente que modifican las perdidad termicas
 - Apertura de la puerta del horno que provoca caidas de temperatura
@@ -108,7 +104,7 @@ A continuacion se presenta un diagrama en bloques de nuestro sistema. (Agregar a
 
 ![Diagrama en Bloques](/img/diagrama1.png "Diagrama en Bloques")
 
-En este caso, se grafica un bloque controlador que luego se determinará si es requerido o no de acuerdo a las especificaciones.
+En este caso, se grafica un bloque controlador que luego se determinará si es requerido o node acuerdo a las especificaciones.
 
 Como se dijo anteriormente nuestra planta se representara con un sistema de **primer orden**, para eso hay de definir dos parametros importantes
 - $R_t [ºC/W]$: Representa la resistencia termica
@@ -138,9 +134,9 @@ En funcion de los valores y dimensiones de nuestro horno tenemos que
 - $\rho = 1.2 \frac{kg}{m^3}$ (Densidad del aire)
 $$m = \rho . V = 1.2 * 0.067 = 0.0804 [Kg]$$
 
-$$C = m . c = 0.0804 * 1005 = 80.8 \frac{J}{ºC}$$
+$$C = m . c = 0.0804 * 1005 = 82.48 \frac{J}{ºC}$$
 
-### Ecuacion Diferencial del sistema
+### Ecuacion Diferencial de la Planta
 
 Partiendo de la ley basica de conservacion de la energia termica
 
@@ -154,13 +150,28 @@ Aplicando la tranformada de Laplace con condicion inicial nula
 
 $$C.s.T(s) +\frac{T(s)}{R_t}= P(s)$$
 $$T(s)(C.s +\frac{1}{R_t})= P(s)$$
-$$\frac{T(s)}{P(s)} = \frac{1}{(C.s +\frac{1}{R_t})} =\frac{\frac{1}{R_t}}{(C.R_t.s +1)} $$
+$$\frac{T(s)}{P(s)} = \frac{1}{(C.s +\frac{1}{R_t})} =\frac{R_t}{(C.R_t.s +1)} $$
 
 Si la forma estandar de una funcion de tranferencia para un sistema de primer orden es
 $$G(s) = \frac{K}{\tau .s + 1}$$
 Entonces
 - $\tau = C . R_t$ constante de tiempo termica
-- $K = 1/R_t$ ganancia estatica
+- $K = R_t$ ganancia estatica
+
+### Funcion de transferencia del sensor LM35
+
+La relacion entre la temperatura que entra al sensor y el voltaje que sale del mismo es simple:
+
+$$V_{salida}(t) = K_{LM35} * T_{entrada}(t)$$
+
+Donde:
+- $V_{salida}$: Voltaje que sale del sensor
+- $K_{LM35}$: Factor de escala del sensor
+- $T_{entrada}$: Temperatura medida por el sensor
+
+En este caso el valor de $K_{LM35} = 0.01 \frac{V}{ºC}$, entonces la funcion de tranferencia nos quedaria
+
+$$G(s) = \frac{V_{salida}(s)}{T_{entrada}(s)} = K_{LM35} = 0.01  \frac{V}{ºC}$$
 
 ---
 
