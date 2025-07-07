@@ -40,7 +40,7 @@ T_out = T_out * potencia_aplicada + Ta  # Amplifica y suma temperatura ambiente
 plt.figure(figsize=(8, 4))
 plt.plot(t_out, T_out, label="Temperatura (°C)", color="orange")
 plt.axhline(300, linestyle="--", color="gray", label="Valor final")
-plt.title("Respuesta del horno a un escalón de 2.4 kW")
+plt.title("Respuesta del horno a un escalón de 1000 W")
 plt.xlabel("Tiempo [s]")
 plt.ylabel("Temperatura [°C]")
 plt.grid(True)

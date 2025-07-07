@@ -96,8 +96,6 @@ Para nuestro trabajo la **planta** es el horno electrico, que se modela como un 
 
 $$T(t) = T_{\infin}(1-e^{-\frac{t}{\tau}})$$
 
-![Respuesta temporal de la planta](/img/Figure_1.png "Respuesta temporal (Ejemplo)")
-
 El calor se almacena principalmente en el aire y en las paredes internas. La potencia que ingresa a nuestro sistema, calienta ese volumen de aire.
 
 A continuacion se presenta un diagrama en bloques de nuestro sistema. (Agregar algo sobre la diferencia de unidades a la salida del sensor y la entrada del sistema)
@@ -158,6 +156,11 @@ Entonces
 - $\tau = C . R_t$ constante de tiempo termica
 - $K = R_t$ ganancia estatica
 
+A continuacion se presenta la grafica de nuestra funcion de transferencia para los parametros establecidos
+
+![Respuesta temporal de la ](/img/Figure_1.png "Respuesta temporal")
+
+
 ### Funcion de transferencia del sensor LM35
 
 La relacion entre la temperatura que entra al sensor y el voltaje que sale del mismo es simple:
@@ -172,6 +175,12 @@ Donde:
 En este caso el valor de $K_{LM35} = 0.01 \frac{V}{ºC}$, entonces la funcion de tranferencia nos quedaria
 
 $$G(s) = \frac{V_{salida}(s)}{T_{entrada}(s)} = K_{LM35} = 0.01  \frac{V}{ºC}$$
+
+### Funcion de transferencia del Actuador (Rele)
+En nuestro sistema, el actuador recivira una señal de control de $0[V]-5[V]$ y nos entregara $1000[W]$ de potencias necesarios para nuestro horno. El valor de $K_{Rele} = 200 [\frac{W}{V}]$
+
+### Diagrama en Bloques
+
 
 ---
 
