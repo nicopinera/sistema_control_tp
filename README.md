@@ -96,6 +96,72 @@ $$R_{electrica} = \frac{V^2}{P} = \frac{220^2}{2400} = 20.53 [\Omega] $$
 
 ## 3. Analisis de la planta
 
+Para nuestro trabajo la **planta** es el horno electrico, que se modela como un sistema termico que tranforma potencia electria en temperatura. El horno es un sistema donde se acumula calor, se pierde calor al ambiente y no hay oscilaciones ni sobrepaso natural, sino un aumento lento y asintotico de la temperatura en su interior. Debido a este comportamiento se decide modelar el sistema como un sistema de **primer orden**, cuya respuesta al escalon es:
+
+$$T(t) = T_{\infin}(1-e^{-\frac{t}{\tau}})$$
+
+![Respuesta temporal de la planta](/img/Figure_1.png "Respuesta temporal (Ejemplo)")
+
+El calor se almacena principalmente en el aire y en las paredes internas. La potencia que ingresa a nuestro sistema, calienta ese volumen de aire.
+
+A continuacion se presenta un diagrama en bloques de nuestro sistema. (Agregar algo sobre la diferencia de unidades a la salida del sensor y la entrada del sistema)
+
+![Diagrama en Bloques](/img/diagrama1.png "Diagrama en Bloques")
+
+En este caso, se grafica un bloque controlador que luego se determinará si es requerido o no de acuerdo a las especificaciones.
+
+Como se dijo anteriormente nuestra planta se representara con un sistema de **primer orden**, para eso hay de definir dos parametros importantes
+- $R_t [ºC/W]$: Representa la resistencia termica
+- $C$: Capacidad termica Total
+
+La **resistencia termica** se calcula de la siguiente manera
+
+$$R_t = \frac{T_{\infin}-T_a}{P}$$
+Donde:
+- $T_{\infin}$ temperatura en regimen estacionario
+- $T_a$: temperatura ambiente
+- $P$: potencia constante aplicada
+
+En nuestro sistema la temperatura ambiente sera de $25[ºC]$ y la temperatura del horno en regimen estacionario sera de $300[ºC]$, ademas la potencia aplicada sera de $2400[W]$ entonces el valor de la resistencia termica seria
+
+$$R_t = \frac{T_{\infin}-T_a}{P} = \frac{300-25}{2400} = 114.58[m \Omega]$$
+
+La **capacidad termica total** se la puede calcular de la siguiente manera
+
+$$C = m.c$$
+Siendo 
+- $m$: la masa del material contenido
+- $c$: calor especifico, en el caso del aire $c = 1005J/kg$
+
+En funcion de los valores y dimensiones de nuestro horno tenemos que
+- $V = 67 [litros] = 0.067[m^3]$ (Volumen)
+- $\rho = 1.2 \frac{kg}{m^3}$ (Densidad del aire)
+$$m = \rho . V = 1.2 * 0.067 = 0.0804 [Kg]$$
+
+$$C = m . c = 0.0804 * 1005 = 80.8 \frac{J}{ºC}$$
+
+### Ecuacion Diferencial del sistema
+
+Partiendo de la ley basica de conservacion de la energia termica
+
+$$C.\frac{dT(t)}{dt} = P(t)-\frac{T(t)-T_a}{R_t}$$
+
+si se considera que la temperatura ambiente $T_a = 0$ nos queda
+
+$$C.\frac{dT(t)}{dt} +\frac{T(t)}{R_t}= P(t)$$
+
+Aplicando la tranformada de Laplace con condicion inicial nula
+
+$$C.s.T(s) +\frac{T(s)}{R_t}= P(s)$$
+$$T(s)(C.s +\frac{1}{R_t})= P(s)$$
+$$\frac{T(s)}{P(s)} = \frac{1}{(C.s +\frac{1}{R_t})} =\frac{\frac{1}{R_t}}{(C.R_t.s +1)} $$
+
+Si la forma estandar de una funcion de tranferencia para un sistema de primer orden es
+$$G(s) = \frac{K}{\tau .s + 1}$$
+Entonces
+- $\tau = C . R_t$ constante de tiempo termica
+- $K = 1/R_t$ ganancia estatica
+
 ---
 
 > Para controlar de forma adecuada la temperatura interna de un horno eléctrico, se realiza un control PID (proporcional, integral y derivado). Gracias a este mecanismo, es posible mantener el valor de la temperatura a un nivel constante, algo fundamental a la hora de cocinar determinados alimentos.
