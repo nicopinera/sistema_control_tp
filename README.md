@@ -22,11 +22,12 @@ Para nuestro sistema las temperaturas máximas posibles de establecer varían se
 
 ### 1.2 Modelo Comercial
 Para este trabajo utilizaremos de referencia el siguiente modelo comercial para estudiar su comportamiento y características: **_Horno Whirlpool Empotrable Eléctrico 60 CM Inox (AKZM656IX)_** el cual posee las siguientes características:
-•	Dimensión: Ancho $595 [mm]$ x Profundidad $564 [mm]$ x Altura $595 [mm]$
-•	Potencia total: $2.4 [kW]$
-•	Tensión de entrada admitida: $198-242 [V]$
-•	Capacidad del Horno: $67 [Litros]$
-•	Temperatura mínima: $50 [ºC]$ – Temperatura máxima: $250 [ºC]$
+
+- Dimensión: Ancho $595 [mm]$ x Profundidad $564 [mm]$ x Altura $595 [mm]$
+- Potencia total: $2.4 [kW]$
+- Tensión de entrada admitida: $198-242 [V]$
+- Capacidad del Horno: $67 [Litros]$
+- Temperatura mínima: $50 [ºC]$ – Temperatura máxima: $250 [ºC]$
 
 ## 2. Definicion del Problema 
 Hablar de hornos es adentrarse en un mundo de cocción, donde la tecnología se ha hecho presente a través de diversos modelos que evolucionan con el paso del tiempo. Tener un horno eléctrico en casa es una alternativa a un horno de gas, quizá con una capacidad menor pero que funciona muy bien para cocinar los alimentos de una familia promedio.
