@@ -34,7 +34,7 @@ Hablar de hornos es adentrarse en un mundo de cocción, donde la tecnología se 
 
 Estos hornos emplean resistencias para convertir la energía eléctrica en calor. De esta manera, permiten que se lleve a cabo un proceso denominado efecto Joule. Consiste en producir calor mediante el choque de los electrones que generan la corriente eléctrica y los átomos. 
 
-Cuando esto se produce, la temperatura se eleva. Mientras el horno esté conectado a la corriente, este proceso se seguirá produciendo. Los choques de los electrones y los átomos son constantes debido al movimiento desordenado de los primeros dentro del horno. La potencia de este tipo de hornos depende de la cantidad de [kV] que sean capaces de absorber de la corriente eléctrica. En función de esto, el calor que emitan será mayor o menor.
+Cuando esto se produce, la temperatura se eleva. Mientras el horno esté conectado a la corriente, este proceso se seguirá produciendo. Los choques de los electrones y los átomos son constantes debido al movimiento desordenado de los primeros dentro del horno. La potencia de este tipo de hornos depende de la cantidad de [V] que sean capaces de absorber de la corriente eléctrica. En función de esto, el calor que emitan será mayor o menor.
 
 Un horno eléctrico funciona generando calor a través de resistencias eléctricas que se calientan cuando se conectan a la corriente eléctrica. Este calor se distribuye dentro del horno, ya sea por convección natural o mediante un ventilador en los hornos de convección, para cocinar los alimentos. El efecto Joule, también conocido como calentamiento Joule, es el fenómeno físico que explica cómo la energía eléctrica se transforma en calor cuando una corriente eléctrica circula por un material resistivo.
 
