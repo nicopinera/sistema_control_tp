@@ -94,7 +94,7 @@ La acción de control se ejecuta mediante un **relé** que gobierna el encendido
 
 Para nuestro trabajo la **planta** es el horno electrico, que se modela como un sistema termico que tranforma potencia electria en temperatura. El horno es un sistema donde se acumula calor, se pierde calor al ambiente y no hay oscilaciones ni sobrepaso natural, sino un aumento lento y asintotico de la temperatura en su interior. Debido a este comportamiento se decide modelar el sistema como un sistema de **primer orden**, cuya respuesta al escalon es:
 
-$$T(t) = T_{\infin}(1-e^{-\frac{t}{\tau}})$$
+$$T(t) = T_{\infty}(1-e^{-\frac{t}{\tau}})$$
 
 El calor se almacena principalmente en el aire y en las paredes internas. La potencia que ingresa a nuestro sistema, calienta ese volumen de aire.
 
@@ -110,15 +110,15 @@ Como se dijo anteriormente nuestra planta se representara con un sistema de **pr
 
 La **resistencia termica** se calcula de la siguiente manera
 
-$$R_t = \frac{T_{\infin}-T_a}{P}$$
+$$R_t = \frac{T_{\infty}-T_a}{P}$$
 Donde:
-- $T_{\infin}$ temperatura en regimen estacionario
+- $T_{\infty}$ temperatura en regimen estacionario
 - $T_a$: temperatura ambiente
 - $P$: potencia constante aplicada
 
 En nuestro sistema la temperatura ambiente sera de $25[ºC]$ y la temperatura del horno en regimen estacionario sera de $300[ºC]$, ademas la potencia aplicada sera de $1000[W]$ entonces el valor de la resistencia termica seria
 
-$$R_t = \frac{T_{\infin}-T_a}{P} = \frac{300-25}{2400} = 275e-3[\Omega]$$
+$$R_t = \frac{T_{\infty}-T_a}{P} = \frac{300-25}{2400} = 275e^{-3}[\Omega]$$
 
 La **capacidad termica total** se la puede calcular de la siguiente manera
 
