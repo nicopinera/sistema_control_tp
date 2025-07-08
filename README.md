@@ -57,7 +57,7 @@ El efecto Joule permite un calentamiento rápido y eficiente del horno, ya que l
 
 ### Que se busca controlar
 
-El desafio de este trabajo sera diseñar un sistema de control que permita mantener la temperatura del horno en un valor deseado, compensando perturbaciones y variaciones en la carga termica. Nuestra señal de salida sera la temperatura del horno, la mediremos con el sensor **LM35** el cual es un sensor de temperatura lineal con salida equivalente a $10 [\frac{mV}{ºC}]$ (falta explicar el acondicionador de señal). 
+El desafío de este trabajo será diseñar un sistema de control que permita mantener la temperatura del horno en un valor deseado, compensando perturbaciones y variaciones en la carga térmica. Nuestra señal de salida será la temperatura del horno, la mediremos con el sensor **LM35** el cual es un sensor de temperatura lineal con salida equivalente a $10 [\frac{mV}{ºC}]$, además se utilizará un acondicionador de señal para que la salida del LM35 tenga un nivel adecuado para cualquier ADC y disminuir el ruido eléctrico generado por el horno.
 
 ### Accion de control
 
@@ -85,38 +85,37 @@ La acción de control se ejecuta mediante un **relé** que gobierna el encendido
 | Constante de tiempo| $\tau$ | $s$| $\tau = R_t . C$, indica cuán rápido responde el horno. |
 
 ### Perturbaciones posibles
-- Cambios en la temperatura ambiente que modifican las perdidad termicas
-- Apertura de la puerta del horno que provoca caidas de temperatura
-- Insercion de objetos frios que modifican el equilibrio termico
-- Variaciones en la tension de red, que afectan la potencia real de la resistencia 
+- Cambios en la temperatura ambiente que modifican las perdidas térmicas
+- Apertura de la puerta del horno que provoca caídas de temperatura
+- Inserción de objetos fríos que modifican el equilibrio térmico
+- Variaciones en la tensión de red, que afectan la potencia real de la resistencia
+ 
 
 ## 3. Analisis de la planta
 
-Para nuestro trabajo la **planta** es el horno electrico, que se modela como un sistema termico que tranforma potencia electria en temperatura. El horno es un sistema donde se acumula calor, se pierde calor al ambiente y no hay oscilaciones ni sobrepaso natural, sino un aumento lento y asintotico de la temperatura en su interior. Debido a este comportamiento se decide modelar el sistema como un sistema de **primer orden**, cuya respuesta al escalon es:
+Para nuestro trabajo la **planta** es el horno eléctrico, que se modela como un sistema térmico que transforma potencia eléctrica en temperatura. El horno es un sistema donde se acumula calor, se pierde calor al ambiente y no hay oscilaciones ni sobrepaso natural, sino un aumento lento y asintótico de la temperatura en su interior. Debido a este comportamiento se decide modelar el sistema como un sistema de **primer orden**, cuya respuesta al escalón es:
 
 $$T(t) = T_{\infty}(1-e^{-\frac{t}{\tau}})$$
 
 El calor se almacena principalmente en el aire y en las paredes internas. La potencia que ingresa a nuestro sistema, calienta ese volumen de aire.
 
-En este caso, se grafica un bloque controlador que luego se determinará si es requerido o node acuerdo a las especificaciones.
+Como se dijo anteriormente nuestra planta se representará con un sistema de **primer orden**, para eso hay de definir dos parámetros importantes
+- $R_t [ºC/W]$: Representa la resistencia térmica
+- $C$: Capacidad térmica Total
 
-Como se dijo anteriormente nuestra planta se representara con un sistema de **primer orden**, para eso hay de definir dos parametros importantes
-- $R_t [ºC/W]$: Representa la resistencia termica
-- $C$: Capacidad termica Total
-
-La **resistencia termica** se calcula de la siguiente manera
+La **resistencia térmica** se calcula de la siguiente manera
 
 $$R_t = \frac{T_{\infty}-T_a}{P}$$
 Donde:
-- $T_{\infty}$ temperatura en regimen estacionario
-- $T_a$: temperatura ambiente
-- $P$: potencia constante aplicada
+- $T_{\infty}$ : Temperatura en régimen estacionario
+- $T_a$: Temperatura ambiente
+- $P$: Potencia constante aplicada
 
-En nuestro sistema la temperatura ambiente sera de $25[ºC]$ y la temperatura del horno en regimen estacionario sera de $300[ºC]$, ademas la potencia aplicada sera de $1000[W]$ entonces el valor de la resistencia termica seria
+En nuestro sistema la temperatura ambiente será de $25[ºC]$ y la temperatura del horno en régimen estacionario será de $300[º C]$, además la potencia aplicada será de $1000[W]$ entonces el valor de la resistencia térmica seria
 
-$$R_t = \frac{T_{\infty}-T_a}{P} = \frac{300-25}{2400} = 275e^{-3}[\Omega]$$
+$$R_t = \frac{T_{\infty}-T_a}{P} = \frac{300-25}{1000} = 275e^{-3}[\Omega]$$
 
-La **capacidad termica total** se la puede calcular de la siguiente manera
+La **capacidad térmica total** se la puede calcular de la siguiente manera
 
 $$C = m.c$$
 
@@ -124,17 +123,17 @@ Siendo
 - $m$: la masa del material contenido
 - $c$: calor especifico, en el caso del aire $c = 1005J/kg$
 
-En funcion de los valores y dimensiones de nuestro horno tenemos que
+En función de los valores y dimensiones de nuestro horno tenemos que
 - $V = 67 [litros] = 0.067[m^3]$ (Volumen)
-- $\rho = 1.2 \frac{kg}{m^3}$ (Densidad del aire)
+- $\rho_{aire} = 1.2 \frac{kg}{m^3}$ (Densidad del aire)
 
-$$m = \rho . V = 1.2 * 0.067 = 0.0804 [Kg]$$
+$$m = \rho . V = 1.2 * 0.067 = 0.0804 [kg]$$
 
 $$C = m . c = 0.0804 * 1005 = 82.48 \frac{J}{ºC}$$
 
-### Ecuacion Diferencial de la Planta
+### Ecuación Diferencial de la Planta
 
-Partiendo de la ley basica de conservacion de la energia termica
+Partiendo de la ley básica de conservación de la energía térmica
 
 $$C.\frac{dT(t)}{dt} = P(t)-\frac{T(t)-T_a}{R_t}$$
 
@@ -142,26 +141,25 @@ si se considera que la temperatura ambiente $T_a = 0$ nos queda
 
 $$C.\frac{dT(t)}{dt} +\frac{T(t)}{R_t}= P(t)$$
 
-Aplicando la tranformada de Laplace con condicion inicial nula
+Aplicando la transformada de Laplace con condición inicial nula
 
 $$C.s.T(s) +\frac{T(s)}{R_t}= P(s)$$
 $$T(s)(C.s +\frac{1}{R_t})= P(s)$$
-$$\frac{T(s)}{P(s)} = \frac{1}{(C.s +\frac{1}{R_t})} =\frac{R_t}{(C.R_t.s +1)} $$
+$$G(s)=\frac{T(s)}{P(s)} = \frac{1}{(C.s +\frac{1}{R_t})} =\frac{R_t}{(C.R_t.s +1)} $$
 
-Si la forma estandar de una funcion de tranferencia para un sistema de primer orden es
+Si la forma estándar de una función de transferencia para un sistema de primer orden es
 $$G(s) = \frac{K}{\tau .s + 1}$$
 Entonces
-- $\tau = C . R_t$ constante de tiempo termica
-- $K = R_t$ ganancia estatica
+- $\tau = C . R_t$ constante de tiempo térmica
+- $K = R_t$ ganancia estática
 
-A continuacion se presenta la grafica de nuestra funcion de transferencia para los parametros establecidos del horno
-
-![Respuesta temporal de la ](/img/Figure_1.png "Respuesta temporal")
+A continuación, se presenta la gráfica de la respuesta en frecuencia al escalón unitario de nuestra función de transferencia para los parámetros establecidos de nuestra planta.
 
 
-### Funcion de transferencia del sensor LM35
+![Respuesta temporal de la ](/img/FTplanta.png "Respuesta temporal")
 
-La relacion entre la temperatura que entra al sensor y el voltaje que sale del mismo es simple:
+### Función de transferencia del sensor LM35
+La relación entre la temperatura que entra al sensor y el voltaje que sale del mismo es simple:
 
 $$V_{salida}(t) = K_{LM35} * T_{entrada}(t)$$
 
@@ -170,33 +168,55 @@ Donde:
 - $K_{LM35}$: Factor de escala del sensor
 - $T_{entrada}$: Temperatura medida por el sensor
 
-En este caso el valor de $K_{LM35} = 0.01 \frac{V}{ºC}$, entonces la funcion de tranferencia nos quedaria
+En este caso el valor de $K_{LM35} = 0.01 [\frac{V}{ºC}]$, entonces la función de transferencia nos quedaría
+$$H_{sensor}(s) = \frac{V_{salida}(s)}{T_{entrada}(s)} = K_{LM35} = 0.01  [\frac{V}{ºC}]$$
 
-$$G(s) = \frac{V_{salida}(s)}{T_{entrada}(s)} = K_{LM35} = 0.01  \frac{V}{ºC}$$
 
-### Funcion de transferencia del Actuador (Rele)
-En nuestro sistema, el actuador recivira una señal de control de $0[V]-5[V]$ y nos entregara $1000[W]$ de potencias necesarios para nuestro horno. El valor de $K_{Rele} = 200 [\frac{W}{V}]$
+### Función de transferencia del Actuador (Relé)
+En nuestro sistema, el actuador recibirá una señal de control de $0[V]-5[V]$ y nos entregará  $1000[W]$ de potencias necesarios para nuestro horno. El valor de $K_{Relé} = 200 [\frac{W}{V}]$
+
+### Funcion de tranferencia del Acondicionador de señal
+Se colocara un acondicionador de señal para mejorar el nivel ed voltaje a la salida del sensor de temperatura y disminuir el ruido electrico proporcionado por el Horno. Sera un **Amplificador no inversor con filtrado RC** ya que tiene alta impedancia de entrada asegurando que el amplificador no "extrae" cirruebte dek sensor, manteniendo la precision de su salida, tiene ganancia ajustable y precisa. 
+
+Este acondicionador tiene los siguientes parametros:
+- Ganancia
+- RC y Tau
+
+La ganancia se calcula con la siguiente expresion: 
+
+$$G_v = \frac{\text{Amplitud de salida deseada}}{\text{Amplitud de entrada}} = 1 + \frac{R_{feedback}}{R_{gain}}$$ 
+
+Debemos saber que el rango de valores entregados por el sensor es 0.5[V] a 3[V] ya que trabajaremos con temperaturas de 50[ºC] a 300[ºC], entonces tendremos una amplitud de señal equivalente a $3 - 0.5 = 2.5[V]$.
+
+Se desea llevar este rango a uno mas apropiado por si se utiliza un ADC en el controlador para comparar, el cual sera de 0.75[V] a 4.5[V] lo que nos da una amplitud de señal de salida deseada equivalente a $4.5[V]-0.75[V] = 3.75[V]$
+
+$$G_v = \frac{\text{Amplitud de salida deseada}}{\text{Amplitud de entrada}} = \frac{3.75[V]}{2.5[V]} = 1.5$$ 
+
+En funcion de este valor se sabe que las resistencias deben tener la siguiente relacion
+
+$$0.5 = \frac{R_{feedback}}{R_{gain}}$$
 
 ### Diagrama en Bloques
-A continuacion se presenta un diagrama en bloques de nuestro sistema. (Agregar algo sobre la diferencia de unidades a la salida del sensor y la entrada del sistema)
+A continuación, se presenta un diagrama en bloques de nuestro sistema. (Agregar algo sobre la diferencia de unidades a la salida del sensor y la entrada del sistema)
 
 ![Diagrama en Bloques](/img/DiagramaBloques.png "Diagrama en Bloques")
 
-Reemplazando las funciones de tranferencias (FT) descriptas en la seccion anterior, el diagrama en bloques nos quedaria de la siguiente manera
+Reemplazando las funciones de transferencias (FT) descriptas en la sección anterior, el diagrama en bloques nos quedaría de la siguiente manera
 
 ![FT](/img/FT.png "Diagrama en Bloques con FT")
 
-### Funcion de Tranferencia a Lazo Abierto
+### Función de Transferencia a Lazo Abierto
 
-Aplicando algebra de bloques, se encuentra que la funcion de transferencia a lazo abierto es la siguiente: 
+Aplicando algebra de bloques, se encuentra que la función de transferencia a lazo abierto es la siguiente: 
 
-![FTLA](/img/FTLA.png "Funcion de Tranferencia a lazo Abierto")
+![FTLA](/img/FTLA.png "Función de Transferencia a lazo Abierto")
 
-### Funcion de Tranferencia a Lazo Cerrado
+### Función de Transferencia a Lazo Cerrado
 
-Aplicando algebra de bloques, se encuentra que la funcion de transferencia a lazo cerrado es la siguiente: 
+Aplicando algebra de bloques, se encuentra que la función de transferencia a lazo cerrado es la siguiente: 
 
-![FTLC](/img/FTLC.png "Funcion de Tranferencia a lazo Cerrado")
+![FTLC](/img/FTLC.png "Función de Transferencia a lazo Cerrado")
+
 
 ---
 

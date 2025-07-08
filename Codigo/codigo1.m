@@ -25,6 +25,7 @@ K = Rt;
 tau = C * Rt;
 
 G = K / (tau*s+1)
+#step(G);
 Ksensor = 0.01
 Krele = 200
 
@@ -36,7 +37,7 @@ Gtotal = G * Krele;
 
 
 FTLC = Gtotal / (1+Gtotal*Ksensor);
-step(FTLC,250);
+# step(FTLC,250);
 FTLC
 
 disp('Terminado');
