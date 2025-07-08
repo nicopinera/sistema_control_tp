@@ -98,10 +98,6 @@ $$T(t) = T_{\infty}(1-e^{-\frac{t}{\tau}})$$
 
 El calor se almacena principalmente en el aire y en las paredes internas. La potencia que ingresa a nuestro sistema, calienta ese volumen de aire.
 
-A continuacion se presenta un diagrama en bloques de nuestro sistema. (Agregar algo sobre la diferencia de unidades a la salida del sensor y la entrada del sistema)
-
-![Diagrama en Bloques](/img/diagrama1.png "Diagrama en Bloques")
-
 En este caso, se grafica un bloque controlador que luego se determinará si es requerido o node acuerdo a las especificaciones.
 
 Como se dijo anteriormente nuestra planta se representara con un sistema de **primer orden**, para eso hay de definir dos parametros importantes
@@ -158,7 +154,7 @@ Entonces
 - $\tau = C . R_t$ constante de tiempo termica
 - $K = R_t$ ganancia estatica
 
-A continuacion se presenta la grafica de nuestra funcion de transferencia para los parametros establecidos
+A continuacion se presenta la grafica de nuestra funcion de transferencia para los parametros establecidos del horno
 
 ![Respuesta temporal de la ](/img/Figure_1.png "Respuesta temporal")
 
@@ -182,7 +178,25 @@ $$G(s) = \frac{V_{salida}(s)}{T_{entrada}(s)} = K_{LM35} = 0.01  \frac{V}{ºC}$$
 En nuestro sistema, el actuador recivira una señal de control de $0[V]-5[V]$ y nos entregara $1000[W]$ de potencias necesarios para nuestro horno. El valor de $K_{Rele} = 200 [\frac{W}{V}]$
 
 ### Diagrama en Bloques
+A continuacion se presenta un diagrama en bloques de nuestro sistema. (Agregar algo sobre la diferencia de unidades a la salida del sensor y la entrada del sistema)
 
+![Diagrama en Bloques](/img/DiagramaBloques.png "Diagrama en Bloques")
+
+Reemplazando las funciones de tranferencias (FT) descriptas en la seccion anterior, el diagrama en bloques nos quedaria de la siguiente manera
+
+![FT](/img/FT.png "Diagrama en Bloques con FT")
+
+### Funcion de Tranferencia a Lazo Abierto
+
+Aplicando algebra de bloques, se encuentra que la funcion de transferencia a lazo abierto es la siguiente: 
+
+![FTLA](/img/FTLA.png "Funcion de Tranferencia a lazo Abierto")
+
+### Funcion de Tranferencia a Lazo Cerrado
+
+Aplicando algebra de bloques, se encuentra que la funcion de transferencia a lazo cerrado es la siguiente: 
+
+![FTLC](/img/FTLC.png "Funcion de Tranferencia a lazo Cerrado")
 
 ---
 
