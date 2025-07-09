@@ -1,2 +1,4 @@
 # Codigo
-Carpeta que contiene los codigos utilizados en octave para la simulacion y calculos de nuestro trabajo
+Posee dos directorios
+- Python: Carpeta con codigos de python
+- Octave: Carpeta con los codigos de matlab donde se realizan las simulaciones del sistema.
