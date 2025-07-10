@@ -1,12 +1,12 @@
-% Comandos principales
 close all; clear all; clc;
+pkg load control;
 
-s = tf('s'); % Definir la variable de Laplace 's'
+s = tf('s');
 
 % Par\u00e1metros
 Ta = 25; % Temperatura ambiente
 Tfinal = 300; % Temperatura del Horno en r\u00e9gimen estacionario esperada para 1000W
-potencia_referencia = 1000; % Potencia aplicada para c\u00e1lculo de Rt
+potencia_referencia = 500; % Potencia aplicada para c\u00e1lculo de Rt
 
 Rt = (Tfinal - Ta) / potencia_referencia; % Resistencia t\u00e9rmica
 
@@ -24,17 +24,18 @@ tau_planta = C * Rt; % Constante de tiempo de la planta [s]
 % Funci\u00f3n de Transferencia de la Planta
 G_planta = K_planta / (tau_planta * s + 1);
 
-% Funciones de Transferencia de otros componentes
+% Funciones de Transferencia
 Ksensor = 0.01; % FT del sensor [V/\u00b0C]
-Krele = 1; % \u00a1Solicitado por el usuario: Krele = 1 [W/V]!
+Krele = 1; % Krele = 1 [W/V]
 Has = 1.5 / (0.0318 * s + 1); % FT del Acondicionador de Se\u00f1al
 
 % Calcular la FTLC
-G_forward = G_planta * Krele; % Desde la salida del controlador hasta la salida de la planta
-H_feedback = Ksensor * Has;   % Desde la salida de la planta hasta la entrada del punto de suma (sin incluir el controlador que ir\u00eda al inicio)
-FTLC = feedback(G_forward, H_feedback);
+G = G_planta * Krele; % Camino directo: Planta * Actuador (Rel\u00e9)
+H = Ksensor * Has;   % Camino de retroalimentaci\u00f3n: Sensor * Acondicionador
 
-disp('Funci\u00f3n de Transferencia a Lazo Cerrado (FTLC) calculada con feedback y Krele = 1:');
+FTLC = feedback(G, H);
+
+disp('Funci\u00f3n de Transferencia a Lazo Cerrado (FTLC):');
 FTLC
 
 % An\u00e1lisis de la Respuesta Temporal
@@ -46,12 +47,15 @@ fprintf('\nGanancia en Estado Estacionario de la FTLC (FTLC(0)): %.4f\n', gananc
 
 % Obtener los polos de la FTLC para determinar el tiempo de simulaci\u00f3n
 polos_LC = pole(FTLC);
-disp('Polos del Sistema a Lazo Cerrado (sin controlador):');
+disp('Polos del Sistema a Lazo Cerrado:');
 disp(polos_LC);
 
 % Calcular el tiempo de simulaci\u00f3n basado en el polo m\u00e1s lento
+% tau = 1/P -> Polo en 1/tau
 P = max(pole(FTLC)); #Polo mas lento
-t_sim = 10 * (1 / abs(P));
+tau_sistema = (1 / abs(P))
+t_establecimiento = 4*tau_sistema
+t_sim = 10 * tau_sistema;
 t = 0:1:t_sim; % Vector de tiempo con un paso de 1 segundo
 
 % Simular la Respuesta al Escal\u00f3n de la  FTLC
@@ -66,15 +70,11 @@ fprintf('La temperatura esperada si la FTLC tuviera ganancia 1 ser\u00eda: %.2f 
 
 % Graficar la Respuesta Temporal
 figure;
-plot(t_out, T_horno_simulado, 'b', 'LineWidth', 1.5, 'DisplayName', 'Temperatura Medida (Simulada)');
+plot(t_out, T_horno_simulado, 'b', 'LineWidth', 1.5, 'DisplayName', 'Temperatura Medida');
 grid on;hold on;
 
 % Obtener los l\u00edmites actuales del eje Y para que la l\u00ednea abarque todo el gr\u00e1fico
 y_limits = ylim; % Esto captura los l\u00edmites actuales del eje Y del gr\u00e1fico
-
-% Dibuja la l\u00ednea vertical de puntos
-# plot([tau_planta tau_planta], y_limits);
-# plot([t_establecimiento t_establecimiento], y_limits);
 
 % L\u00ednea del setpoint
 plot(t, temperatura_setpoint_sim * ones(size(t)), 'r--', 'LineWidth', 1, 'DisplayName', ['Setpoint (', num2str(temperatura_setpoint_sim), ' \u00b0C)']);
@@ -85,13 +85,12 @@ plot(t, temperatura_final_simulada * ones(size(t)), 'g:', 'LineWidth', 2, 'Displ
 title(['Respuesta Temporal del Horno a Lazo Cerrado (Setpoint de ', num2str(temperatura_setpoint_sim), '\u00b0C)']);
 xlabel('Tiempo [s]');
 ylabel('Temperatura [\u00b0C]');
-legend('Location', 'best');
+legend();
 
 % Ajustar los l\u00edmites del eje Y din\u00e1micamente para ver todo el rango
 max_val_plot = max(max(T_horno_simulado), temperatura_setpoint_sim * 1.2);
 min_val_plot = min(0, min(T_horno_simulado));
 ylim([min_val_plot max_val_plot]);
-
 hold off;
 
 disp('Simulaci\u00f3n terminada.');
