@@ -97,5 +97,8 @@ Este proyecto fue desarrollado por:
 
 ---
 **Universidad Nacional de Córdoba**
+
 **Facultad de Ciencias Exactas, Físicas y Naturales**
+
 **Cátedra de Sistemas de Control**
+
