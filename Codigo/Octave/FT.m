@@ -2,8 +2,7 @@
 close all;clear all;clc;
 
 # Paquetes
-pkg load control;
-pkg load symbolic;
+pkg load control;pkg load symbolic;
 
 # Variable de Laplace
 s=tf('s');
@@ -49,10 +48,25 @@ FTLA = minreal(FTLA);
 Gtotal = G * Krele;
 Htotal = Ksensor * Has;
 FTLC = feedback(Gtotal,Htotal);
-# FTlc = Gtotal/(1+Gtotal*Htotal);
-# FTlc = minreal(FTlc);
 
-# step(FTLC,300);               # Grafico de la FTLA
+den_ftlc = [1.413, 44.47, 1.008]; # Coeficientes del denominador
+A = den_ftlc(1);B = den_ftlc(2);C = den_ftlc(3);
+
+# Normalizar  s^2 + (B/A)s + (C/A)
+# dividiendo por A
+B_normalized = B / A;
+C_normalized = C / A;
+
+% Calcular Omega_n
+% wn^2 = C_normalized
+omega_n = sqrt(C_normalized)
+
+% Calcular phita (Factor de Amortiguamiento)
+% 2*zeta*wn = B_normalized
+zeta = B_normalized / (2 * omega_n)
+
+
+# step(FTLC,300); # Grafico de la FTLA
 
 # ---------------------------
 # Estudio de la relatividad absoluta

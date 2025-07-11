@@ -1,45 +1,55 @@
-close all; clear all;clc;
+# Comandos principales
+close all;clear all;clc;
 pkg load control;
 
 s = tf('s');
+temperatura_setpoint_sim = 300;
 
-Ta = 25; # Temperatura ambiente [\u00b0C]
-Tfinal = 300; # Temperatura del Horno en r\u00e9gimen estacionario esperada para 1000W [\u00b0C]
-potencia_referencia = 1000; # Potencia aplicada
+# Par\u00e1metros
+Ta = 25; # Temperatura ambiente
+Tfinal = 300; % Temperatura del Horno en r\u00e9gimen estacionario esperada para 1000W
+potencia_referencia = 1000; # Potencia aplicada para c\u00e1lculo de Rt
+
 Rt = (Tfinal - Ta) / potencia_referencia; # Resistencia t\u00e9rmica
 
+# C\u00e1lculo de la Capacidad T\u00e9rmica Total
 c = 1005; # Calor espec\u00edfico del aire [J/kg\u00b0C]
 V = 0.067; # Volumen del horno [m^3]
 ro = 1.225; # Densidad del aire [kg/m^3]
-m = ro * V; # Masa de aire
-C = m * c; # Capacidad t\u00e9rmica
+m = ro * V; # Masa de aire [kg]
+C = m * c; # Capacidad t\u00e9rmica [J/\u00b0C]
 
+# Variables de la planta
 K_planta = Rt; # Ganancia de la planta [\u00b0C/W]
 tau_planta = C * Rt; # Constante de tiempo de la planta [s]
-G_planta = K_planta / (tau_planta * s + 1); # Funci\u00f3n de Transferencia de la Planta
 
+# Funci\u00f3n de Transferencia de la Planta
+G_planta = K_planta / (tau_planta * s + 1);
+
+# Funciones de Transferencia
 Ksensor = 0.01; # FT del sensor [V/\u00b0C]
-Krele = 1; # Ganancia del rel\u00e9
+Krele = 1; # Krele = 1 [W/V]
 Has = 1.5 / (0.0318 * s + 1); # FT del Acondicionador de Se\u00f1al
+ControladorProporcional=3.69; # Controlador
 
-G = G_planta * Krele; # Camino directo: Planta * Actuador
-H = Ksensor * Has;   # Camino de retroalimentaci\u00f3n: Sensor * Acondicionador
+G = G_planta * Krele*ControladorProporcional;
+H = Ksensor * Has;
 FTLC = feedback(G, H)
 
-# tau = 1/P -> Polo en 1/tau
 P = max(pole(FTLC)); #Polo mas lento
-t_sim = 15 * (1 / abs(P));
-t = 0:0.1:t_sim; # Vector de tiempo con un paso de 0.1 segundos para una curva m\u00e1s suave
+tau_sistema = (1 / abs(P))
+t_establecimiento = 4*tau_sistema
+t_sim = 10 * tau_sistema;
+t = 0:1:t_sim;
 
 # Simular la Respuesta al Escal\u00f3n Unitario
 [T_horno_simulado_unit, t_out_unit] = step(FTLC, t);
 
 # Calcular el Error en Funci\u00f3n del Tiempo
-# e(t) = r(t) - y(t) [r(t) es el setpoint = 1 y y(t) es la respuesta del sistema]
 error_tiempo = 1 - T_horno_simulado_unit;
 
-Y_ss_unit = dcgain(FTLC); # Salida en estado estable
-e_ss_calculated = 1 - Y_ss_unit; # Error en estado estable calculado
+Y_ss_unit = dcgain(FTLC); % Salida en estado estable
+e_ss_calculated = 1 - Y_ss_unit; % Error en estado estable calculado
 
 fprintf('\nPara un escal\u00f3n unitario (1 \u00b0C):\n');
 fprintf('Ganancia en Estado Estacionario de la FTLC (FTLC(0)): %.4f\n', dcgain(FTLC));
@@ -48,7 +58,6 @@ fprintf('Error en Estado Estable Calculado: %.4f \u00b0C\n', e_ss_calculated);
 
 figure('Name', 'An\u00e1lisis de la Respuesta al Escal\u00f3n Unitario y Error');
 
-# Subgr\u00e1fico 1: Entrada r(t) y Salida y(t)
 subplot(2,1,1);
 stairs(t_out_unit, 1 * ones(size(t_out_unit)), 'b', 'LineWidth', 1.5, 'DisplayName', 'r(t) (Setpoint)');
 hold on;
