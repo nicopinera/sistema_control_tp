@@ -27,7 +27,7 @@ Para la implementación del lazo de control, se identificaron y modelaron matem�
 * **1. Planta (Horno Eléctrico):**
     * Representa la cámara interna del horno y su interacción con la fuente de calor.
     * Modelada como un **sistema de primer orden**, caracterizado por su **ganancia $K_{planta} = 0.275 \text{ °C/W}$** y su **constante de tiempo $\tau_{planta} = 22.68 \text{ s}$**. Este modelo representa adecuadamente la dinámica térmica asintótica del horno sin oscilaciones naturales.
-    * 
+      
 ![Visualización de la respuesta a un escalón de la planta](/img/Respuesta%20Temporales/FTplanta.png)
 
 * **2. Sensor de Temperatura (LM35):**
@@ -65,9 +65,11 @@ La simulación del sistema a lazo cerrado con el controlador Proporcional (`Kp =
 * **Tiempo de Establecimiento:** El sistema se estabilizó en aproximadamente 89.372 segundos.
 
 La **respuesta temporal del horno a lazo cerrado** con el controlador P se muestra a continuación:
+
 ![Respuesta Temporal del Horno a Lazo Cerrado con Controlador P](/img/Respuesta%20Temporales/FTLCconControlador.png)
 
 El comportamiento del error para una entrada de escalón unitario, ilustrando su rápida reducción y estabilización en un valor mínimo:
+
 ![Respuesta del Sistema y Comportamiento del Error para Escalon Unitario](/img/EssConControlador.png)
 
 ## 💡 Conclusión General
