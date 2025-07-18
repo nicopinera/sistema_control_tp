@@ -4,76 +4,48 @@ close all;clear all;clc;
 # Paquetes
 pkg load control;pkg load symbolic;
 
-# Variable de Laplace
-s=tf('s');
-
-# Variable Simbolica
-syms x;
-
-# ---------------------------
+s=tf('s'); # Variable de Laplace
+syms x; # Variable Simbolica
 
 ## Calculo de La Resistencia Termica
 Ta = 25; # Temperatura ambiente
 Tfinal = 300; # Temperatura del Horno en regimen estacionario
 potencia_aplicada = 1000; # [W]
+Rt = (Tfinal-Ta)/potencia_aplicada; ## Resistencia termica
 
-## Resistencia termica
-Rt = (Tfinal-Ta)/potencia_aplicada;
-
-## Calculo del Calor total
 c = 1005; # Calor especifico del aire 1005 J/kg
 V = 0.067; # Volumen del horno 0.067 m^3
 ro = 1.225; # densidad del aire 1.2 kg/m^3
 m = ro * V; # Masa de aire
-C = m * c;
+C = m * c; ## Calculo del Calor total
 
 # Calculo de las variables de la planta
 K = Rt; # Ganancia
 tau = C * Rt; # Constante de tiempo
 
 G = K / (tau*s+1); # FT de la planta
-# step(G); # Grafico de la respuesta al escalon
-
-Ksensor = 0.01; # FT del sensor
+%step(G,300); # Grafico de la respuesta al escalon
 Krele = 1; # FT del Actuador - Rele
-Has = 1.5/(0.0318*s+1); # FT del Acondicionador de Se\u00f1al
-# step(Has,0.5);
+
+# Realimentacion
+Ksensor = 40e-6; # FT del sensor
+Has = 417/(0.0318*s+1); # FT del Acondicionador de Se\u00f1al
 
 # Funcion de transferencia a lazo abierto
-FTLA = G * Ksensor * Krele * Has
-FTLA = minreal(FTLA);
-# step(FTLA,200) # Grafico de FTLA
+FTLA = G * Ksensor * Krele * Has;
+%pzmap(FTLA)
+%step(FTLA,200) # Grafico de FTLA
 
 # Funcion de transferencia a lazo cerrado
 Gtotal = G * Krele;
 Htotal = Ksensor * Has;
-FTLC = feedback(Gtotal,Htotal);
-
-den_ftlc = [1.413, 44.47, 1.008]; # Coeficientes del denominador
-A = den_ftlc(1);B = den_ftlc(2);C = den_ftlc(3);
-
-# Normalizar  s^2 + (B/A)s + (C/A)
-# dividiendo por A
-B_normalized = B / A;
-C_normalized = C / A;
-
-% Calcular Omega_n
-% wn^2 = C_normalized
-omega_n = sqrt(C_normalized)
-
-% Calcular phita (Factor de Amortiguamiento)
-% 2*zeta*wn = B_normalized
-zeta = B_normalized / (2 * omega_n)
-
-
-# step(FTLC,300); # Grafico de la FTLA
+FTLC = feedback(Gtotal,Htotal)
+# step(FTLC,300)
 
 # ---------------------------
 # Estudio de la relatividad absoluta
 # Polos y zeros de nuestra FT
 P = pole(FTLA); #Puntos de origen
-Z = zero(FTLA); # Puntos terminales
-# disp(Z);
 disp(P);
 
 centroide = (-31.447-0.044085)/2;
@@ -86,7 +58,6 @@ dy1_dx = diff(y1, x);
 # disp(dy1_dx);
 soluciones_x = solve(dy1_dx == 0, x);
 disp(soluciones_x);
+%rlocus(FTLC); # Lugar de raices
 
-# Lugar de raices
-# rlocus(FTLA);
 disp('Terminado');

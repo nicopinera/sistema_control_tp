@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="3R-ecaOboWi3HFTGqawt" name="Page-1">
-        <mxGraphModel dx="812" dy="645" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="818" dy="645" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -24,7 +24,7 @@
                         <mxPoint x="570" y="280" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="8" value="0.01" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="8" value="40e-6" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="480" y="260" width="60" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" value="" style="edgeStyle=none;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="6" edge="1">
@@ -43,7 +43,7 @@
                 <mxCell id="12" value="Salida" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
                     <mxGeometry x="700" y="280" width="60" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="&lt;img alt=&quot;&quot; src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAM4AAAA5CAYAAAB+iBRlAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAASoSURBVHhe7d09cqNMEAbgZs8iO3D5BMMJtJs4cqoMQm3izKEyJUMoZ04VbfLBCdAJXA52uEt/ASDBCOihsWtdu+9TpcA0Mww/PYwomYmYmQkAZvnmLwAAGRIHQAGJA6CAxAFQQOIAKCBxABSQOAAKSBwABSQOgAISB0ABiQOggMQJUGUpxXFEURRTnFV+WCSVl+K1gtIooigtekurqqCiKT9ctqA0jiiK6vpTf50qozhq4xFFUUr9LcAghml5wsa63t9J3l1BIJWX4szM7Ngawza3bK6DNb+ehjWGk7xZ7up6elW4iTphFO44guLXGz3+WF0W3NzR26/wPlkqL8WJiIp0Q8fHV9re9BYH2ZYlHdZN/asV/Xj01wANJI7G229/yTxS+U68ymLa0TOV205yaVUZbY6P9LT2lr98vwzV4pSKoREf9CBxvjj3fqJTe2Hf/KTTy/eR7zKCKqN0807P5ZZ6KbjaUslM3H5e72i3D7+j/quQOKITvTtv0f2tt2CKVH46vj50LmpnyST57LtPlaUU72/pqTyQf7O5srqle+mOCEgcyfrJEv2+9PDF/kj3D/7lV9VPvAaeSEnlpfgyFWVpTHt6ovKwplUz9Os+mMvimOKs850r29HLrI7hH+U/LYBrziZMRExEg0+umHNOiJgo4aHnU1J5Kc7MnCd13F+nu/z8MbYOOsvGjxF5T+0c28Rc6k4sD7cAuiLGOwcAZsNQDUABiQOggMQBUEDiACggcQAUkDgACkgcAAUkDoACEgdAAYkDoIDEAdDwf7zW1/540f+0P2ZEHHE/9jfFx+FHngAKGKoBKCBxABSQOAAKSBwABSQOgAISB0ABiQOggMQBUEDiACggcUJVBd6pDGdBiRM2f8uw7Dw3y+XTr2N6/hZ5/peqjrd1pxkNrbVMQelmR7vN9Zs6pfZ/Pmn7Unza0vP31cnX1wj/x2tX/HlXBudvGWdN/wdzzppefeL8LS2/HY26vkuB3Kt/uWZuGte0wfTfdBncfsnI/kmk7UtxyYedv8+mPH5nM8uLiZMnzUXTWjgRkX8ifM6OHPjAHZufOP4rYA2b9hWyzf532+Osmdz/0fZLAvdPIm1fikvU52/U9PEPtvT4zSwfNFS7on2bfZXR8f5h/I35Y/O3iKrzkGL3Pm8umSrb0PHumVwzI8Drwz2dOvH1oaRDpz2rbUlld0GXuv0fRNq+FJd8wvmTjv+X5WeSb/COo+kRpN7IWU6merOQHsHVvZe4Xk/Oibn8L4YxCbcjj1mk9g8ZeSk6Xb0YPYC0fSkeYNH5G7Xg+H/k8Qu5vjoCEsdrhHqo5kZv884mbJJ8+i35oTu2ILHZuXrmgJnlg9ovCd2/AdL2pXiYhecvhPL4My87fszzy4tDtbD5W8bnhzmr/hu4zcvzt0iyOKb0/Jy4omL/k04z5nfplV+tiG6JTHD55e1fRtq+FL+s9yXO3+zj/wf5mTREnr+l/RfU4R6Jx27zI7fa7nqT879w3Uv1v1zO6/msSTjplKcPGCpc7WeImT0ec8D2pfjZ550/yaLj36U5fiHX1wj86zSAgjhUA4BrSBwABSQOgAISB0Dhf77SNr868abnAAAAAElFTkSuQmCC&quot;&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="13" value="&lt;div&gt;&lt;img alt=&quot;&quot; src=&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMsAAAA7CAYAAADVaX4qAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAT7SURBVHhe7d09cqtIFAXgw6xFdqDSCmAFfpM4cqoMQr3EmUNlSiCUM6eKXmJYAVqBS4HpvfQEklDTorkXYde4Zs5XpcBcml8daLkkOrLWWhCR6C9/AhH1Y1iIlBgWIiWGhUiJYSFSYliIlBgWIiWGhUiJYSFSYliIlBgWIiWGZYApMiRJhChKkBTGL4uk9lL9qEIWRYiyqjvZFEiiCFH7ytCdw6DKkraeeO2LxG17mie4DQSGZUCVYYln1LWFtTXq+w389+sgqb1UBwAYFMka8zJH7JcAIC1hrT29tnhwSqZY4s/8ra2/zdfe8lOUbVuLJu9dAzkYloDqzwee/p5dJtzN8fHn6t0cJLWX6gBQZUvsnt6wuutM1rt3lg/g4/Ny51jV3XC97xZ4WXXnpy6GZYyPT3/KOFJ7p26KBGu8oB56A7/+unSjkgyV04uarV6AdYIkiZAkGTaHJ7yFlmUK7BaPnfDQNYblh2oOe+zPYbj7jf3rr+5nitkKtdONsm9zrDfOncl8Ai816tqirrd4nh/wHvhIYt53WDwyKhKGJWiPQ+NNWtx7E4ZI7YfrD1snCE2OOC2H7zKzeyycO1O12WHudN9m98CuNy0G77sFmBUZwxLw8JwDTh+/2vRdfc3xP1VX/4mS20t1SZEkSArnM1CxxqsTtrs5cGguyzefH1i0fznMO7tgWpaCmjy1ACwAG+eNX7bWljYFLJDa0i8p2kt1a60t02P9ep7G5ml8qaW57S7Br/dtobVNHttAiTyR5W/wiVTYDSNSYliIlBgWIiWGhUiJYSFSYliIlBgWIiWGhUiJYSFSYliIlBgWIi3/y2JH5y8I+q/zFwZZZ92v/Zfq/fhFSiIldsOIlBgWIiWGhUiJYSFSYliIlBgWIiWGhUiJYSFSYliIlBgWiak6zxCm/6/BsOjGD+knj/9RIWvnSZB5yzemQnVaf/+6zbHejj9SoG+uaSpkyzXWy+snTkrb//2k9Uv1YVPP308nv796+F8Wa5Vp9wmIZTrqyYV53P1SWpPHneXlcWzT8vR305z+vszf8rfj5Li8S4PSW/50x23Km9M2xN0nPqq3XxLYP4m0fqku+bLz991uPH6tEe2DYSnT0xvlrMmDjwDV8A++L/gYUeXOjA+L/3jT2MZx3lbLtLs9TR4P7n9w+yXK/ZNI65fqkpvPX9Dw8VebevxGtB/shl2RxhcJkcb/MAWWuyc8B2cIMW13YX0QxjLxmGKJ3fwFzXlkrMcF9k79YVtj62zPbFWjdie4bt7+LyKtX6pLvuH8Scf/R/LTc9Z7Z7kl+dJVp8ltOnTV0iS/OV6lxPk6SpvGl98yxHFqz72KUaTt79PkNr76LcXxFTxOIdL6pbrCpPMXNOH4f+Xx07y/TgbC4q345m5YE7yFN3lq47T0nv7u0e7MhDDbpjk+0X5ke9X2S7T710Nav1TXmXj+NG48/tZOO37Wjmsf7Ibpxg8Jj0/S6h3/w6DIEmzwjHr7gBmOw8JdD0AaViQJsvZ/ugbV5jf2IwYb6rSfzYB7IFa3n77900jrl+qX+X7E+Rt9/P8lfnpc8vgh559n9l95bOgWHriNuvO545K0L/fKc+p6tds38gqXx6lNnfb4gm7A1X5qjLiytaT1S/XW950/yaTj77rl+GneXz34s2IipWA3jIi6GBYiJYaFSIlhIVJiWIiUGBYipX8AeRgxt5FDAq8AAAAASUVORK5CYII=&quot;&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="370" y="340" width="192.5" height="90" as="geometry"/>
                 </mxCell>
                 <mxCell id="14" style="edgeStyle=none;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="13" edge="1">
@@ -76,7 +76,7 @@
                         <mxPoint x="750" y="280" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="20" value="H(s) = 1.5/(0.0318*s+1)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                <mxCell id="20" value="H(s) = 417/(0.0318*s+1)" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="580" y="250" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>

@@ -1,14 +1,25 @@
 close all; clear all; clc;
 pkg load control;
 
-# Par\u00e1metros de la Planta (Horno)
-K_planta = 0.275; # [\u00b0C/W]
-tau_planta = 22.22; # [s] tau = C * Rt (Constante de tiempo)
+s=tf('s'); # Variable de Laplace
 
-# Definici\u00f3n de la Funci\u00f3n de Transferencia de la Planta
-num_planta = [K_planta];
-den_planta = [tau_planta 1];
-G_planta = tf(num_planta, den_planta)
+## Calculo de La Resistencia Termica
+Ta = 25; # Temperatura ambiente
+Tfinal = 300; # Temperatura del Horno en regimen estacionario
+potencia_aplicada = 1000; # [W]
+Rt = (Tfinal-Ta)/potencia_aplicada; ## Resistencia termica
+
+c = 1005; # Calor especifico del aire 1005 J/kg
+V = 0.067; # Volumen del horno 0.067 m^3
+ro = 1.225; # densidad del aire 1.2 kg/m^3
+m = ro * V; # Masa de aire
+C = m * c; ## Calculo del Calor total
+
+# Calculo de las variables de la planta
+K_planta= Rt; # Ganancia
+tau_planta = C * Rt; # Constante de tiempo
+
+G_planta = K_planta / (tau_planta*s+1); # FT de la planta
 
 # Escal\u00f3n de Potencia de 1000 W
 potencia_escalon = 1000; # Potencia aplicada en [W]
