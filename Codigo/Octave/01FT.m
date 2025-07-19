@@ -32,7 +32,7 @@ Ksensor = 40e-6; # FT del sensor
 Has = 417/(0.0318*s+1); # FT del Acondicionador de Se\u00f1al
 
 # Funcion de transferencia a lazo abierto
-FTLA = G * Ksensor * Krele * Has;
+FTLA = G * Ksensor * Krele * Has
 %pzmap(FTLA)
 %step(FTLA,200) # Grafico de FTLA
 

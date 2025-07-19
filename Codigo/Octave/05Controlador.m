@@ -45,7 +45,7 @@ step(FTLC,t_simulacion)
 set(gca, 'yticklabel', []);
 
 # Error en Estado Estable
-FTLA = C * G * H;
+FTLA = C * G * H
 Kdc = dcgain(FTLA);
 ess = 1 / (1 + Kdc);
 printf("Kdc = %.4f\n", Kdc);
